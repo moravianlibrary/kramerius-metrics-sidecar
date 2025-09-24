@@ -30,11 +30,8 @@ jobs:
       - name: Determine version
         id: version
         run: |
-          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-            VERSION="${GITHUB_REF##*/}"  # use tag like v1.2.3
-          else
-            VERSION=$(cat VERSION)       # fallback to VERSION file on main
-          fi
+          # Strip leading 'v' from Git tag, fallback to VERSION file if not a tag
+          VERSION="${GITHUB_REF_NAME#v}"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Check if Docker image exists
@@ -64,4 +61,4 @@ jobs:
           body: |
             Release ${{ github.ref_name }}
 
-            Docker image: `docker pull randiak/kramerius-metrics-sidecar:${{ github.ref_name }}`
+            Docker image: `docker pull ${IMAGE_NAME}:${VERSION}`
