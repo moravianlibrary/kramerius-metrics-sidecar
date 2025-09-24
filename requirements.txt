@@ -1,0 +1,3 @@
+kramerius @ git+https://github.com/moravianlibrary/kramerius-client.git@v0.1.0
+prometheus-client
+typer
