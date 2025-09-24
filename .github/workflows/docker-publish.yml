@@ -49,7 +49,7 @@ jobs:
       - name: Build Docker image
         if: env.IMAGE_EXISTS == 'false'
         run: |
-          docker build -t ${IMAGE_NAME}:${VERSION} .
+          docker build -t ${IMAGE_NAME}:${VERSION} -f Containerfile .
 
       - name: Push Docker image
         if: env.IMAGE_EXISTS == 'false'
@@ -64,4 +64,4 @@ jobs:
           body: |
             Release ${{ github.ref_name }}
 
-            Docker image: `docker pull moravianlibrary/kramerius-metrics-sidecar:${{ github.ref_name }}`
+            Docker image: `docker pull randiak/kramerius-metrics-sidecar:${{ github.ref_name }}`
