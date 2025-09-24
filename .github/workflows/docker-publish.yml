@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_NAME: your-dockerhub-username/kramerius-metrics-sidecar
+      IMAGE_NAME: randiak/kramerius-metrics-sidecar
 
     steps:
       - name: Checkout code
